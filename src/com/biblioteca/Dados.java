@@ -1,73 +1,43 @@
+package com.biblioteca;
+
 import java.util.*;
 
 public class Dados {
-    public Hashtable cadastroPaciente;
-    public Hashtable cadastroMedico;
-    public Hashtable cadastroConsulta;
+    public Hashtable cadastroLivro;
     
     public Dados() {
-        this.cadastroPaciente = new Hashtable();
-        this.cadastroMedico = new Hashtable();
-        this.cadastroConsulta = new Hashtable();
+        this.cadastroLivro = new Hashtable();
     }
     
-    public void inserirDados(Paciente paciente){
-        this.cadastroPaciente.put(paciente.codigoPaciente, paciente);
+    public void inserirDados(Livro livro){
+        this.cadastroLivro.put(livro.codigoLivro, livro);
     }
     
-    public void inserirDados(Medico medico){
-        this.cadastroMedico.put(medico.crmMedico, medico);
-    }
-    
-    public void inserirDados(ConsultaMedica consulta){
-        this.cadastroConsulta.put(consulta.numeroConsulta, consulta);
-    }
-    
-    public void listarConsultas(){
-        Set<String> consultas = cadastroConsulta.keySet();
-        System.out.println("LISTAGEM TOTAL DAS CONSULTAS DA PLATAFORMA");
-        for(String keyConsultas:consultas){
-            ConsultaMedica novaConsulta = (ConsultaMedica)cadastroConsulta.get(keyConsultas);
-            
-            System.out.printf("ConsultaMedica: %1$s - Data: %2$s - Hora: %3$s\n",novaConsulta .numeroConsulta,novaConsulta.dataConsulta,novaConsulta.horaConsulta);
-            
-            Paciente novoPaciente = (Paciente)cadastroPaciente.get(novaConsulta.codPaciente);
-            
-            System.out.printf("Paciente: %1$s\n",novoPaciente.nomePaciente);
-            
-            Medico novoMedico = (Medico)cadastroMedico.get(novaConsulta.crmMedico);
-            
-            System.out.printf("Medico: %1$s - Especialidade: %2$s\n",novoMedico.nomeMedico,novoMedico.especialidade);
+    public void listarLivros(){
+        Set<String> cadastros = cadastroLivro.keySet();
+        System.out.println("LISTAGEM TOTAL DOS LIVROS DA PLATAFORMA");
+        for(String keycadastros:cadastros){         
+            Livro novoLivro = (Livro)cadastroLivro.get(keycadastros);
+            System.out.printf("Livro: %1$s\n",novoLivro.nomeLivro);
             System.out.println();
         }
     }
 
-    public void listaConsultaFiltrada(){
+    public void listaLivroID(){
         Scanner entrada = new Scanner(System.in);
-        Set<String> consultas = cadastroConsulta.keySet();
-        System.out.println("VISUALIZAR CONSULTA POR CÓDIGO");
-        System.out.print("Insira o código da consulta: ");
-        String consultaDesejada = entrada.nextLine();
+        Set<String> cadastros = cadastroLivro.keySet();
+        System.out.println("CONSULTAR LIVRO POR CÓDIGO");
+        System.out.print("Insira o código do livro: ");
+        String consultaLivro = entrada.nextLine();
         int existe = 0;
-        
-        for(String keyConsultas:consultas){
-            ConsultaMedica novaConsulta = (ConsultaMedica)cadastroConsulta.get(keyConsultas);
-        }
 
-
-        for(String keyConsultas:consultas){
-            ConsultaMedica novaConsulta = (ConsultaMedica)cadastroConsulta.get(keyConsultas);
-            //Verifica Existência da consulta
-            if(consultaDesejada.equals(novaConsulta.numeroConsulta)){
-                System.out.printf("ConsultaMedica: %1$s - Data: %2$s - Hora: %3$s\n",novaConsulta .numeroConsulta,novaConsulta.dataConsulta,novaConsulta.horaConsulta);
-            
-                Paciente novoPaciente = (Paciente)cadastroPaciente.get(novaConsulta.codPaciente);
-                
-                System.out.printf("Paciente: %1$s\n",novoPaciente.nomePaciente);
-                
-                Medico novoMedico = (Medico)cadastroMedico.get(novaConsulta.crmMedico);
-                
-                System.out.printf("Medico: %1$s - Especialidade: %2$s\n",novoMedico.nomeMedico,novoMedico.especialidade);
+        for(String keycadastros:cadastros){
+            Livro novoLivroAux = (Livro)cadastroLivro.get(keycadastros);
+            //Verifica Existência do livro
+            if(consultaLivro.equals(novoLivroAux.codigoLivro)){
+                Livro novoLivro = (Livro)cadastroLivro.get(keycadastros);
+                System.out.printf("Livro: %1$s\n",novoLivro.nomeLivro);
+                System.out.println();
                 existe = 1;
                 break;
             }else{
@@ -75,7 +45,7 @@ public class Dados {
             }
         }
         if (existe == 0) {
-            System.out.println("Consulta Não existente na base de dados!");
+            System.out.println("livro não existente na base de dados!");
         }
     }
 }

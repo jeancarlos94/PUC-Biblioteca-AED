@@ -6,6 +6,29 @@ import java.util.*;
 
 public class Main {
 
+    public static void listarCategorias(){
+
+        List<Integer> listaCategorias = new ArrayList<Integer>();
+
+        for (int i = 1; i < 11; i++) {
+            listaCategorias.add(i);
+        }
+
+        System.out.println("\n\n                     Categorias disponíveis");
+        System.out.println("\n                  ===========================");
+        System.out.println("                  |     1 - Aventura         |");
+        System.out.println("                  |     2 - Romance          |");
+        System.out.println("                  |     3 - Ficção           |");
+        System.out.println("                  |     4 - Biografia        |");
+        System.out.println("                  |     5 - Conto            |");
+        System.out.println("                  |     6 - Drama            |");
+        System.out.println("                  |     7 - Horror           |");
+        System.out.println("                  |     8 - Drama            |");
+        System.out.println("                  |     9 - Suspense         |");
+        System.out.println("                  |     10 - Poesia          |");
+        System.out.println("                  ===========================\n");
+    }
+
     public static void LimparConsole() throws InterruptedException, IOException {
         if (System.getProperty("os.name").contains("Windows"))
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -16,84 +39,65 @@ public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
         Scanner entrada = new Scanner(System.in);
         Dados cadastrarDados = new Dados();
-        Paciente novoPaciente;
-        Medico novoMedico;
-        ConsultaMedica novaConsulta;
+        Livro novoLivro;
         int opcao;
 
         do {
-            System.out.println("BEM VINDO AO CADASTRA CONSULTAS 1.0");
-            System.out.println("MENU DE FUNCIONALIDADES");
-            System.out.println("1 - Cadastrar Paciente");
-            System.out.println("2 - Cadastrar Médico");
-            System.out.println("3 - Agendar Consulta");
-            System.out.println("4 - Visualizar Consulta por código");
-            System.out.println("5 - Visualizar Todas as Consultas");
-            System.out.println("6 - Sair");
-            System.out.print("Para utilizar o sistema insira a opção desejada: ");
+            System.out.println("\n\n### SISCOM - Sistema Comercial de Controle de Compras e Vendas ###");
+        System.out.println("\n                  =========================");
+        System.out.println("                  |     1 - Cadastrar Livro        |");
+        System.out.println("                  |     2 - Listar Categorias      |");
+        System.out.println("                  |     3 - Buscar Livro        |");
+        System.out.println("                  |     4 - Listar livros por categoria    |");
+        System.out.println("                  |     5 - Listar todos livros      |");
+        System.out.println("                  |     0 - Sair          |");
+        System.out.println("                  =========================\n");
+        System.out.print("Para utilizar o sistema insira a opção desejada: ");
+        opcao = Integer.parseInt(entrada.nextLine());
 
-            try {
-                opcao = Integer.parseInt(entrada.nextLine());
-                LimparConsole();
-            } catch (Exception erro) {
-                System.out.println("Insira apenas números");
-                opcao = 0;
-            } finally {
-                opcao = Integer.parseInt(entrada.nextLine());
-                LimparConsole();
-            }
+        switch (opcao) {
 
-            // Cadastra Paciente
-            if (opcao == 1) {
-                do {
-                    // Cadastramento de novo paciente
-                    novoPaciente = new Paciente();
-                    novoPaciente.cadastroPaciente();
-                    cadastrarDados.inserirDados(novoPaciente);
-                    System.out.print("\nDeseja cadastrar um novo Paciente? (S/N)");
-
-                } while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
-            }
+            case 1:
+            do {
+                novoLivro = new Livro();
+                novoLivro.cadastroLivro();
+                cadastrarDados.inserirDados(novoLivro);
+                System.out.print("\nDeseja cadastrar um novo livro? (S/N)");
+            }while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
             LimparConsole();
-            // Cadastra Médico
-            if (opcao == 2) {
-                do {
-                    // Cadastramento novo médico
-                    novoMedico = new Medico();
-                    novoMedico.cadastraMedico();
-                    cadastrarDados.inserirDados(novoMedico);
-                    System.out.print("\nDeseja cadastrar outro Médico? (S/N)");
+            break;
 
-                } while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
-            }
-            LimparConsole();
-            // Agenda Consulta
-            if (opcao == 3) {
-
-                do {
-                    // Agendamento de Consultas
-                    novaConsulta = new ConsultaMedica();
-                    novaConsulta.realizarConsulta();
-                    cadastrarDados.inserirDados(novaConsulta);
-                    System.out.print("\nDeseja marcar outra consulta? (S/N)");
-
-                } while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
-            }
-            LimparConsole();
-            // Listar uma consulta em específico
-            if (opcao == 4) {
-                do {
-                    cadastrarDados.listaConsultaFiltrada();
-                    // cadastrarDados.listarConsultas();
-                    System.out.print("\nDeseja exibir outra consulta? (S/N)");
-                } while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
-            }
-            LimparConsole();
-            if (opcao == 5) {
-                cadastrarDados.listarConsultas();
+            case 2:
+                listarCategorias();
                 entrada.nextLine();
-            }
-            // "Sair" da aplicação
-        } while (opcao != 6);
+                break;
+
+            case 3:
+            do{
+                cadastrarDados.listaLivroID();
+                System.out.print("\nDeseja buscar outro livro? (S/N)");
+            }while (entrada.nextLine().toUpperCase().charAt(0) != 'N');
+            LimparConsole();
+            break;
+
+            // case 4:
+            //     BD.RelatorioConsultas();
+            //     S.nextLine();
+            //     break;
+
+            case 5:
+                cadastrarDados.listarLivros();
+                entrada.nextLine();
+                break;
+
+            case 0:
+                System.out.printf("\n Saindo...\n\n");
+                break;
+
+            default:
+                System.out.printf("\n Opção invalida!!\n");
+                break;
+        }
+        } while (opcao != 0);
     }
 }
