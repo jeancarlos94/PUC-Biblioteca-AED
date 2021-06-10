@@ -44,17 +44,17 @@ public class Main {
 
         do {
             System.out.println("\n\n### SISCOM - Sistema Comercial de Controle de Compras e Vendas ###");
-        System.out.println("\n                  =========================");
-        System.out.println("                  |     1 - Cadastrar Livro        |");
-        System.out.println("                  |     2 - Listar Categorias      |");
-        System.out.println("                  |     3 - Buscar Livro        |");
-        System.out.println("                  |     4 - Listar livros por categoria    |");
-        System.out.println("                  |     5 - Listar todos livros      |");
-        System.out.println("                  |     0 - Sair          |");
-        System.out.println("                  =========================\n");
-        System.out.print("Para utilizar o sistema insira a opção desejada: ");
+        System.out.println("\n                 =======================================");
+        System.out.println("                  |     1 - Cadastrar Livro             |");
+        System.out.println("                  |     2 - Categorias disponíveis      |");
+        System.out.println("                  |     3 - Buscar Livro                |");
+        System.out.println("                  |     4 - Listar livros por categoria |");
+        System.out.println("                  |     5 - Mostrar todos os livros     |");
+        System.out.println("                  |     0 - Sair                        |");
+        System.out.println("                  =======================================\n");
+        System.out.print("Para utilizar o sistema, insira a opção desejada: ");
         opcao = Integer.parseInt(entrada.nextLine());
-
+        /*arquivo txt*/ 
         switch (opcao) {
 
             case 1:
@@ -100,4 +100,4 @@ public class Main {
         }
         } while (opcao != 0);
     }
-}
+} 
