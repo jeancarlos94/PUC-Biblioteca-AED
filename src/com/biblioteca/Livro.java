@@ -7,8 +7,8 @@ public class Livro {
     public String nomeLivro;
     public String autorLivro;
     public String editoraLivro;
-    public Double precoLivro;
     public String categoriaLivro;
+    public Double precoLivro;
 
     public Livro(){
         UUID idlivro = UUID.randomUUID();
@@ -20,15 +20,15 @@ public class Livro {
         System.out.println("--CADASTRO DE LIVRO--");
         System.out.print("Insira o nome do livro: ");
         this.nomeLivro = entrada.nextLine();
-        System.out.print("Insira o autorLivro: ");
+        System.out.print("Insira o autor(a) do livro: ");
         this.autorLivro = entrada.nextLine();
-        System.out.print("Insira a editoraLivro: ");
+        System.out.print("Insira a editora do livro: ");
         this.editoraLivro = entrada.nextLine();
         System.out.print("Insira o preço: ");
         this.precoLivro = Double.parseDouble(entrada.nextLine()); //não deixar escrever letras
         //mostrar aqui as categorias disponíveis
-        System.out.print("Insira a categoriaLivro: ");
-        this.categoriaLivro = entrada.nextLine();
+        System.out.print("Insira a categoria do livro: ");
+        this.categoriaLivro = entrada.nextLine().toUpperCase();
 
         System.out.printf("Código identificador do livro: %1$s\n",this.codigoLivro);
         System.out.println("Cadastro do livro finalizado com sucesso!");
